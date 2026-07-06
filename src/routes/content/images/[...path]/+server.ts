@@ -1,10 +1,8 @@
-import { env } from '$env/dynamic/private';
 import { error } from '@sveltejs/kit';
 import { readFile } from 'node:fs/promises';
 import { extname, isAbsolute, relative, resolve } from 'node:path';
+import { getContentDir } from '$lib/server/environment-variables';
 import type { RequestHandler } from './$types';
-
-const CONTENT_DIR = env.CONTENT_DIR ?? 'content';
 
 const MIME_TYPES: Record<string, string> = {
     '.png': 'image/png',
@@ -25,7 +23,7 @@ export const GET: RequestHandler = async ({ params }) => {
     if (!type) throw error(415, 'Unsupported image type');
 
     // Resolve within the images directory and reject any path traversal
-    const imagesDir = resolve(CONTENT_DIR, 'images');
+    const imagesDir = resolve(getContentDir(), 'images');
     const filePath = resolve(imagesDir, path);
     const rel = relative(imagesDir, filePath);
     if (rel.startsWith('..') || isAbsolute(rel)) throw error(403);

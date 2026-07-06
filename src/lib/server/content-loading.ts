@@ -1,5 +1,5 @@
-import { env } from '$env/dynamic/private';
 import { readFile } from 'node:fs/promises';
+import { getContentDir } from './environment-variables';
 import {
     NavItemKind,
     type ContentNavItem,
@@ -9,14 +9,12 @@ import {
 } from '$lib/structures/nav';
 import { type ExperienceItem } from '$lib/structures/experience';
 
-const CONTENT_DIR = env.CONTENT_DIR ?? 'content';
-
 export async function getArticle(slug: string): Promise<string> {
-    return readFile(`${CONTENT_DIR}/articles/${slug}.md`, 'utf-8');
+    return readFile(`${getContentDir()}/articles/${slug}.md`, 'utf-8');
 }
 
 export async function getJson<T>(slug: string): Promise<T> {
-    return JSON.parse(await readFile(`${CONTENT_DIR}/${slug}.json`, 'utf-8'));
+    return JSON.parse(await readFile(`${getContentDir()}/${slug}.json`, 'utf-8'));
 }
 
 type RawNavItem = {
