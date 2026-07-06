@@ -1,11 +1,15 @@
 <script lang="ts">
     import { MyPage } from '$lib/blocks/mypage';
     import * as Header from '$lib/blocks/header';
-    import type { ChildrenProps } from '$lib/utilities/props';
+    import { parseNavItems } from '$lib/data/page-json';
     import { slide } from 'svelte/transition';
     import Footer from '$lib/blocks/footer.svelte';
+    import type { Snippet } from 'svelte';
+    import type { LayoutData } from './$types';
 
-    let { children }: ChildrenProps = $props();
+    let { children, data }: { children: Snippet; data: LayoutData } = $props();
+
+    const navItems = $derived(parseNavItems(data.navItems));
 </script>
 
 {#snippet header()}
@@ -16,7 +20,7 @@
             </Header.Logo>
             <!-- This allows the header to react to flex row changes -->
             {#snippet navigation(wrapped: boolean)}
-                <Header.Nav useDrawer={wrapped} />
+                <Header.Nav useDrawer={wrapped} {navItems} />
             {/snippet}
         </Header.Root>
     </div>

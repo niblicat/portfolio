@@ -1,7 +1,12 @@
 <script lang="ts">
     import Article from '$lib/blocks/article.svelte';
     import Experience from '$lib/blocks/experience.svelte';
+    import { parseExperienceItems } from '$lib/data/page-json/index.js';
     import memo from '$lib/images/memo-lime.jpg';
+
+    let { data } = $props();
+
+    const experienceItems = parseExperienceItems(data.experienceItems);
 </script>
 
 <svelte:head>
@@ -43,7 +48,7 @@
     </div>
 </section>
 
-<Experience class="mx-4 my-4 max-w-6xl md:mx-8 xl:mx-auto">
+<Experience {experienceItems} class="mx-4 my-4 max-w-6xl md:mx-8 xl:mx-auto">
     <Article tag="section">
         <h2>Current Role</h2>
 

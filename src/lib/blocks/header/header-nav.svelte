@@ -5,22 +5,25 @@
     import type { StandardProps } from '$lib/utilities/props';
     import { cn } from '$lib/utils';
     import { type Snippet } from 'svelte';
+    import type { NavItem } from '$lib/structures/nav';
 
     interface Props extends StandardProps {
+        darkLight?: Snippet;
         drawer?: Snippet;
         navigation?: Snippet;
-        darkLight?: Snippet;
+        navItems?: NavItem[];
         useDrawer?: boolean;
     }
 
     let {
         drawer,
-        navigation,
-        darkLight,
-        useDrawer = $bindable(false),
-        class: className,
-        ref = $bindable(null),
         children,
+        class: className,
+        darkLight,
+        navigation,
+        navItems = [],
+        ref = $bindable(null),
+        useDrawer = $bindable(false),
         ...restProps
     }: Props = $props();
 </script>
@@ -41,12 +44,12 @@ replaced with the drawer.
         {#if drawer}
             {@render drawer()}
         {:else}
-            <Drawer />
+            <Drawer {navItems} />
         {/if}
     {:else if navigation}
         {@render navigation()}
     {:else}
-        <Navigation />
+        <Navigation {navItems} />
     {/if}
 
     {#if darkLight}

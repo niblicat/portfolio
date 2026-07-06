@@ -4,9 +4,9 @@
     import imageLogo from '$lib/images/merge-logo-2.png';
     import imageBanner from '$lib/images/melon-banner.png';
     import * as Header from '$lib/blocks/header';
-    import type { ChildrenProps } from '$lib/utilities/props';
     import { slide } from 'svelte/transition';
     import Footer from '$lib/blocks/footer.svelte';
+    import type { ChildrenProps } from '$lib/utilities/props';
 
     let { children }: ChildrenProps = $props();
 

@@ -2,7 +2,12 @@
     import * as NavigationMenu from '$lib/components/ui/navigation-menu/index.js';
     import { NavItemKind, type NavContent, type NavItem } from '../structures/nav';
     import { buttonVariants } from '$lib/components/ui/button';
-    import { navItems } from '$lib/data/page-json';
+
+    interface Props {
+        navItems: NavItem[];
+    }
+
+    let { navItems }: Props = $props();
 
     let root: HTMLElement | null = $state(null);
     let rootClass = $state('');

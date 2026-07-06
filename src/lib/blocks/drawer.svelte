@@ -1,9 +1,14 @@
 <script lang="ts">
     import Button, { buttonVariants } from '$lib/components/ui/button/button.svelte';
     import * as Drawer from '$lib/components/ui/drawer/index.js';
-    import { navItems } from '$lib/data/page-json';
-    import { NavItemKind } from '../structures/nav';
+    import { NavItemKind, type NavItem } from '../structures/nav';
     import { Menu } from '@lucide/svelte';
+
+    interface Props {
+        navItems: NavItem[];
+    }
+
+    let { navItems }: Props = $props();
 
     let open = $state(false);
 </script>
