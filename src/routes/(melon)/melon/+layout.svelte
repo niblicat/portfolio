@@ -1,8 +1,6 @@
 <script lang="ts">
     import { MyPage } from '$lib/blocks/mypage';
     import Banner from '$lib/blocks/banner.svelte';
-    import imageLogo from '$lib/images/merge-logo-2.png';
-    import imageBanner from '$lib/images/melon-banner.png';
     import * as Header from '$lib/blocks/header';
     import { slide } from 'svelte/transition';
     import Footer from '$lib/blocks/footer.svelte';
@@ -17,7 +15,11 @@
 
 {#snippet logo()}
     <div class="recessed max-h-12 max-w-32 rounded-lg p-1">
-        <img class="object-contain" src={imageLogo} alt="Melon Merge 3D logo" />
+        <img
+            class="object-contain"
+            src="/content/images/merge-logo-2.png"
+            alt="Melon Merge 3D logo"
+        />
     </div>
 {/snippet}
 
@@ -35,7 +37,7 @@
     </div>
 {/snippet}
 
-<Banner image={imageBanner} />
+<Banner image="/content/images/melon-banner.png" />
 
 <MyPage class="flex min-h-lvh w-full scroll-my-24 flex-col pt-24" mainClass="mx-4 md:mx-8" {header}>
     {@render children()}

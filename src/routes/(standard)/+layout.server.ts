@@ -1,4 +1,3 @@
-import { getJson } from '$lib/server/content-loading';
-import type { NavItem } from '$lib/structures/nav';
+import { getJson, parseNavItems } from '$lib/server/content-loading';
 
-export const load = async () => ({ navItems: await getJson<NavItem[]>('nav-items') });
+export const load = async () => ({ navItems: parseNavItems(await getJson('nav-items')) });

@@ -1,7 +1,6 @@
 <script lang="ts">
     import { MyPage } from '$lib/blocks/mypage';
     import * as Header from '$lib/blocks/header';
-    import { parseNavItems } from '$lib/data/page-json';
     import { slide } from 'svelte/transition';
     import Footer from '$lib/blocks/footer.svelte';
     import type { Snippet } from 'svelte';
@@ -9,7 +8,7 @@
 
     let { children, data }: { children: Snippet; data: LayoutData } = $props();
 
-    const navItems = $derived(parseNavItems(data.navItems));
+    const navItems = $derived(data.navItems);
 </script>
 
 {#snippet header()}

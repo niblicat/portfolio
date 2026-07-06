@@ -4,7 +4,6 @@
     import { browser } from '$app/environment';
     import Button from '$lib/components/ui/button/button.svelte';
     import Article from '$lib/blocks/article.svelte';
-    import imageMolly from '$lib/images/molly.jpg';
 
     const numErrorKey = 'numErrors';
     const numErrors: number =
@@ -69,7 +68,7 @@
 
         <img
             class="mx-auto rounded-lg object-contain"
-            src={imageMolly}
+            src="/content/images/molly.jpg"
             alt="A befuzzled muppet cat"
         />
 
