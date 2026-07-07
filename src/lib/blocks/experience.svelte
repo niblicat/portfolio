@@ -10,7 +10,7 @@
     let { class: className, children, experienceItems, ref = $bindable(null) }: Props = $props();
 
     const convertToRange = (start: Date, end?: Date) =>
-        dateRange(start, end, { format: { month: 'long', year: 'numeric' } });
+        dateRange(start, end, { format: { month: 'long', year: 'numeric', timeZone: 'UTC' } });
 </script>
 
 {#snippet experienceArea(item: ExperienceItem)}

@@ -46,9 +46,7 @@ export function parseNavItems(navItemsRaw: RawNavItem[]): NavItem[] {
 export function parseExperienceItems(experienceItems: ExperienceItem[]) {
     return experienceItems.map((item) => ({
         ...item,
-        start: new Date(new Date(item.start).toLocaleString('en', { timeZone: 'UTC' })),
-        end: item.end
-            ? new Date(new Date(item.end).toLocaleString('en', { timeZone: 'UTC' }))
-            : undefined
+        start: new Date(item.start),
+        end: item.end ? new Date(item.end) : undefined
     }));
 }
