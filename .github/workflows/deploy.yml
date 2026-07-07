@@ -1,39 +1,57 @@
 name: Deployment
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+
+concurrency: ci-${{ github.ref_name }}
+
+permissions:
+  contents: write
 
 jobs:
-    deploy:
-        name: CPanel Deploy
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
+  deploy:
+    name: CPanel Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Set up Node.js 24.x
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 24.x
+      - name: Set up Node.js 24.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
 
-            - name: Install dependencies
-              run: npm install
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-            - name: Build
-              run: npm run build
+      - name: Bump patch version
+        run: npm version patch -m "%s"
 
-            - name: Show tree
-              run: tree
+      - name: Install dependencies
+        run: npm install
 
-            - name: Rename index file
-              run: mv build/index.js build/index.mjs
+      - name: Build
+        run: npm run build
 
-            - name: Sync
-              uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-              with:
-                  server: ftp.nibli.net
-                  server-dir: ./build/
-                  local-dir: ./build/
-                  username: ${{ secrets.FTP_USERNAME }}
-                  password: ${{ secrets.FTP_PASSWORD }}
+      - name: Show tree
+        run: tree
+
+      - name: Rename index file
+        run: mv build/index.js build/index.mjs
+
+      - name: Sync
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.nibli.net
+          server-dir: ./build/
+          local-dir: ./build/
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+
+      - name: Push version bump
+        run: git push --follow-tags origin HEAD:main
