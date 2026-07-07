@@ -1,7 +1,11 @@
 <script lang="ts">
     import Article from '$lib/blocks/article.svelte';
     import Experience from '$lib/blocks/experience.svelte';
-    import memo from '$lib/images/memo-lime.jpg';
+
+    let { data } = $props();
+
+    const experienceItems = $derived(data.experienceItems);
+    const overview = $derived(data.overview);
 </script>
 
 <svelte:head>
@@ -19,18 +23,21 @@
     <div class="mx-auto max-w-6xl">
         <img
             class="float-right !m-4 inline max-w-24 rounded-lg shadow-xs"
-            src={memo}
+            src="/content/images/memo-lime.jpg"
             alt="A sleeping kitty holding a slime of lime."
         />
 
         <h1 class="mt-0">About</h1>
 
-        <p>I'm a software engineer and web developer.</p>
+        <p>{overview.headline}</p>
 
         <p>
-            Right now, I'm working with the Center for Crime Science and Violence Prevention at SIUE
-            on an immersive VR law training simulation.
-            <a class="text-nowrap" href="https://www.siue.edu/ccsvp/">Learn more about CCSVP.</a>
+            {overview.overview.text}
+            {#if overview.overview.link}
+                <a class="text-nowrap" href={overview.overview.link.href}>
+                    {overview.overview.link.label}
+                </a>
+            {/if}
         </p>
 
         <ul
@@ -43,21 +50,12 @@
     </div>
 </section>
 
-<Experience class="mx-4 my-4 max-w-6xl md:mx-8 xl:mx-auto">
+<Experience {experienceItems} class="mx-4 my-4 max-w-6xl md:mx-8 xl:mx-auto">
     <Article tag="section">
         <h2>Current Role</h2>
 
-        <p>
-            I am currently working at the Center for Crime Science and Violence Prevention at SIUE's
-            Belleville campus as a Unity Software Engineer. Here, I primarily work on developing a
-            virtual reality law enforcement training simulation with the goal of training officer
-            patience and professionalism. I work with Unity, C#, .NET, and Google Cloud Platform.
-        </p>
-
-        <p>
-            My main focus has been developing a robust dialog system that utilizes generative AI for
-            NPC responses. This involves designing state machines, prompt engineering, and consuming
-            REST APIs for generative AI, text-to-speech, and speech-to-text services.
-        </p>
+        {#each overview.currentRoleParagraphs as paragraph, i (i)}
+            <p>{paragraph}</p>
+        {/each}
     </Article>
 </Experience>

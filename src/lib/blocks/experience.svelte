@@ -1,11 +1,13 @@
 <script lang="ts">
-    import { experienceItems } from '$lib/data/page-json';
     import { type ExperienceItem } from '$lib/structures/experience';
     import type { StandardProps } from '$lib/utilities/props';
     import { dateRange } from '$lib/utils';
-    import type { Snippet } from 'svelte';
 
-    let { class: className, children, ref = $bindable(null) }: StandardProps = $props();
+    interface Props extends StandardProps {
+        experienceItems: ExperienceItem[];
+    }
+
+    let { class: className, children, experienceItems, ref = $bindable(null) }: Props = $props();
 
     const convertToRange = (start: Date, end?: Date) =>
         dateRange(start, end, { format: { month: 'long', year: 'numeric' } });
@@ -24,7 +26,7 @@
         <!-- <span>{item.description}</span> -->
         {#if item.highlights}
             <ul class="ml-6 list-disc">
-                {#each item.highlights as bullet}
+                {#each item.highlights as bullet, i (i)}
                     <li>{bullet}</li>
                 {/each}
             </ul>

@@ -12,7 +12,6 @@ This portfolio is based on [SvelteKit](https://svelte.dev) and designed using [T
   - Better skills
     - Use badges
     - Include relevant icons
-  - CMS & blog posts
   - Optimize images
   - Tests
     - Verify that images referenced in JSON data exist

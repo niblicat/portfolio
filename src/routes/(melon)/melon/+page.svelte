@@ -1,9 +1,6 @@
 <script>
     import Article from '$lib/blocks/article.svelte';
     import Button from '$lib/components/ui/button/button.svelte';
-    import imageGooglePlay from '$lib/images/google-play.png';
-    import imageGameEarly from '$lib/images/melon-early.jpg';
-    import imageGameRecent from '$lib/images/melon-close.png';
 </script>
 
 <svelte:head>
@@ -46,14 +43,18 @@
             href="https://play.google.com/store/apps/details?id=net.nibli.merge3d"
             class="p-0"
         >
-            <img src={imageGooglePlay} alt="Get it on Google Play." class="h-full object-cover" />
+            <img
+                src="/content/images/google-play.png"
+                alt="Get it on Google Play."
+                class="h-full object-cover"
+            />
         </Button>
     </div>
 
     <h2>Early Development</h2>
 
     <img
-        src={imageGameEarly}
+        src="/content/images/melon-early.jpg"
         alt="Game screenshot of a prototype version of Melon Merge 3D."
         class="mx-auto! max-w-32 rounded-lg shadow-xs sm:float-right sm:m-4! sm:inline"
     />
@@ -88,7 +89,7 @@
     <h2>Release</h2>
 
     <img
-        src={imageGameRecent}
+        src="/content/images/melon-close.png"
         alt="Game screenshot of a recent version of Melon Merge 3D in which a pitcher is filled with fruits."
         class="mx-auto! max-w-32 rounded-lg shadow-xs sm:float-right sm:m-4! sm:inline"
     />
