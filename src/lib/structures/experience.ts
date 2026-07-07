@@ -1,3 +1,7 @@
+interface Image {
+    src: string;
+    alt: string;
+}
 export interface ExperienceItem {
     /** The ID attribute for the experience item. */
     id: string;
@@ -8,8 +12,5 @@ export interface ExperienceItem {
     location?: string;
     description?: string;
     highlights?: string[];
-    /** The image source. */
-    src: string;
-    /** The image alt text. */
-    alt: string;
+    image?: Image;
 }

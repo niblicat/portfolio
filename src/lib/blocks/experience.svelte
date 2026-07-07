@@ -45,11 +45,20 @@
             </h3>
         </div>
         <span class="xs:w-1/8 flex w-1/4">
-            <img
-                class="border-secondary mx-auto my-4 h-12 w-12 rounded-full border-2 object-cover sm:h-16 sm:w-16"
-                src={item.src}
-                alt={item.alt}
-            />
+            {#if item.image}
+                <img
+                    class="border-secondary mx-auto my-4 h-12 w-12 rounded-full border-2 object-cover sm:h-16 sm:w-16"
+                    src={item.image.src}
+                    alt={item.image.alt}
+                />
+            {:else}
+                <span
+                    class="border-secondary text-primary-foreground mx-auto my-4 flex h-12 w-12 items-center justify-center rounded-full border-2 bg-gradient-to-br from-primary to-accent text-xl font-thin uppercase sm:h-16 sm:w-16"
+                    aria-hidden="true"
+                >
+                    {item.organization.charAt(0) || '?'}
+                </span>
+            {/if}
         </span>
         {@render experienceArea(item)}
     </li>
