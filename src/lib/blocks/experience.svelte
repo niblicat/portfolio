@@ -53,7 +53,7 @@
                 />
             {:else}
                 <span
-                    class="border-secondary text-primary-foreground mx-auto my-4 flex h-12 w-12 items-center justify-center rounded-full border-2 bg-gradient-to-br from-primary to-accent text-xl font-thin uppercase sm:h-16 sm:w-16"
+                    class="border-secondary text-primary-foreground from-primary to-accent mx-auto my-4 flex h-12 w-12 items-center justify-center rounded-full border-2 bg-gradient-to-br text-xl font-thin uppercase sm:h-16 sm:w-16"
                     aria-hidden="true"
                 >
                     {item.organization.charAt(0) || '?'}

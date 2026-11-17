@@ -19,7 +19,7 @@
         children,
         ref = $bindable(null),
         ...restProps
-    }: Props & { [key: string]: any } = $props();
+    }: Props & { [key: string]: unknown } = $props();
 
     if (raw && children) throw new AttributeError('raw', 'children');
 
@@ -53,7 +53,7 @@ the raw attribute.
     this={tag}
     class={cn(
         'prose prose-slate dark:prose-invert bg-foreground/5 inset-shadow-secondary/50 overflow-hidden rounded-lg border p-8 inset-shadow-sm',
-        className
+        className,
     )}
     bind:this={ref}
     {...restProps}
@@ -61,10 +61,10 @@ the raw attribute.
     {#if raw}
         {#await convertArticle()}
             <SkeletonParagraph {raw} />
-        {:then article: string}
+        {:then article}
             <!-- eslint-disable-next-line svelte/no-at-html-tags -->
             {@html article}
-        {:catch error: string}
+        {:catch error}
             <h1>Error rendering article</h1>
             <p>{error}</p>
         {/await}

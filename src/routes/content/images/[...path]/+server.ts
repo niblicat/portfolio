@@ -13,7 +13,7 @@ const MIME_TYPES: Record<string, string> = {
     '.webp': 'image/webp',
     '.avif': 'image/avif',
     '.gif': 'image/gif',
-    '.svg': 'image/svg+xml'
+    '.svg': 'image/svg+xml',
 };
 
 const CACHE_CONTROL = 'public, max-age=86400';
@@ -49,7 +49,7 @@ export const GET: RequestHandler = async ({ params, request }) => {
     if (notModified) {
         return new Response(null, {
             status: 304,
-            headers: { etag, 'cache-control': CACHE_CONTROL }
+            headers: { etag, 'cache-control': CACHE_CONTROL },
         });
     }
 
@@ -62,7 +62,7 @@ export const GET: RequestHandler = async ({ params, request }) => {
             'content-length': String(stats.size),
             'cache-control': CACHE_CONTROL,
             etag,
-            'last-modified': lastModified
-        }
+            'last-modified': lastModified,
+        },
     });
 };

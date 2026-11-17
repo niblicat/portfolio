@@ -3,10 +3,10 @@
     import { cn } from '$lib/utils';
 
     interface Props extends StandardProps {
-        /** Raw article content as a string. */
-        raw?: string;
         /** Class used on skeleton lines. */
         lineClass?: string;
+        /** Raw article content as a string. */
+        raw?: string;
     }
 
     let {
@@ -24,9 +24,9 @@
 
             return Array.from({ length }, (_, i) => ({
                 isShort: !(i % 3 === 0 || i % 7 === 0),
-                key: i
+                key: i,
             }));
-        })()
+        })(),
     );
 </script>
 
@@ -45,7 +45,7 @@ Otherwise, only 3 lines will be shown.
             class={cn(
                 'animate-gradient from-foreground/30 via-foreground/10 to-foreground/30 my-2 h-4 rounded-lg bg-gradient-to-r bg-size-[200%]',
                 `${skeletonLine.isShort ? 'mr-24' : ''}`,
-                skeletonClass
+                skeletonClass,
             )}
         ></div>
     {/each}

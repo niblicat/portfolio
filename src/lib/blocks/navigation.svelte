@@ -19,8 +19,6 @@
     function adjustSpacing(itemID: string): void {
         if (!root) return;
 
-        console.log(itemID);
-
         const rect = root.getBoundingClientRect();
         const selectedItemElement = document.getElementById(itemID);
 

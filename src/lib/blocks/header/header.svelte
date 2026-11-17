@@ -39,7 +39,7 @@
     $effect(() => {
         void clientWidth; // allows us to observe without using
 
-        if (!!ref) wrapped = isFlexRowWrapped(ref);
+        if (ref) wrapped = isFlexRowWrapped(ref);
         lastClientWidth = clientWidth;
     });
 </script>
@@ -56,7 +56,7 @@ the header.
 <header
     class={cn(
         'bg-primary shadow-primary/50 mx-auto flex h-16 max-w-5xl flex-wrap justify-between gap-4 rounded-lg px-4 py-2 shadow-md sm:px-8',
-        className
+        className,
     )}
     bind:this={ref}
     bind:clientWidth

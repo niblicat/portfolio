@@ -13,8 +13,8 @@ export interface StandardProps extends Partial<ChildrenProps> {
 }
 
 export interface BodyContainerProps extends StandardProps {
-    /** Header should be wrapped in a \<header\> element. */
-    header?: Snippet;
     /** Footer should be wrapped in a \<footer\> element. */
     footer?: Snippet;
+    /** Header should be wrapped in a \<header\> element. */
+    header?: Snippet;
 }

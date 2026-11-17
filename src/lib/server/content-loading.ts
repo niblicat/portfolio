@@ -5,7 +5,7 @@ import {
     type ContentNavItem,
     type LinkNavItem,
     type NavContent,
-    type NavItem
+    type NavItem,
 } from '$lib/structures/nav';
 import { type ExperienceItem } from '$lib/structures/experience';
 
@@ -18,9 +18,9 @@ export async function getJson<T>(slug: string): Promise<T> {
 }
 
 type RawNavItem = {
-    title: string;
-    href?: string;
     contents?: NavContent[];
+    href?: string;
+    title: string;
 };
 
 // TODO: Perform parsing with Zod
@@ -31,13 +31,13 @@ export function parseNavItems(navItemsRaw: RawNavItem[]): NavItem[] {
             return {
                 title: item.title,
                 kind: NavItemKind.Content,
-                contents: item.contents
+                contents: item.contents,
             } as ContentNavItem;
         } else if (item.href) {
             return {
                 title: item.title,
                 kind: NavItemKind.Link,
-                href: item.href
+                href: item.href,
             } as LinkNavItem;
         } else throw new Error('Unexpected Nav Item type!');
     });
@@ -47,6 +47,6 @@ export function parseExperienceItems(experienceItems: ExperienceItem[]) {
     return experienceItems.map((item) => ({
         ...item,
         start: new Date(item.start),
-        end: item.end ? new Date(item.end) : undefined
+        end: item.end ? new Date(item.end) : undefined,
     }));
 }

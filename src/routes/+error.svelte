@@ -29,7 +29,7 @@
                 ':(',
                 'insert error message here',
                 'Sorry.',
-                'I give up.'
+                'I give up.',
             ];
 
             const length = messages.length;
@@ -38,7 +38,7 @@
             else if (numErrors >= messages.length) return messages[length - 1];
             else if (numErrors < 0) return messages[length - 1];
             else return messages[numErrors - 1];
-        })()
+        })(),
     );
 
     if (browser) {

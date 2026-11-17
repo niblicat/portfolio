@@ -9,5 +9,5 @@ export {
     //
     Root as HeaderRoot,
     Logo as HeaderLogo,
-    Nav as HeaderNav
+    Nav as HeaderNav,
 };

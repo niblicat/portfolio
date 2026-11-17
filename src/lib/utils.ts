@@ -37,16 +37,16 @@ export function dateRange(
     start: Date,
     end?: Date,
     opts?: {
-        locale?: Intl.LocalesArgument;
-        format?: Intl.DateTimeFormatOptions;
-        separator?: string;
         current?: string;
-    }
+        format?: Intl.DateTimeFormatOptions;
+        locale?: Intl.LocalesArgument;
+        separator?: string;
+    },
 ): string {
     const options = {
         ...opts,
         separator: opts?.separator ?? ' - ',
-        current: opts?.current ?? 'Present'
+        current: opts?.current ?? 'Present',
     };
 
     const startString: string = start.toLocaleDateString(options.locale, options.format);

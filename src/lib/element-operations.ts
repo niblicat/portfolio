@@ -1,16 +1,16 @@
 export function getComputedValue(
     container: Element,
     cssProp: string,
-    useInt: boolean = true
+    useInt: boolean = true,
 ): number {
     // https://stackoverflow.com/a/49507416
     if (useInt) {
         return parseInt(
-            window.getComputedStyle(container, null).getPropertyValue(cssProp).split('px')[0]
+            window.getComputedStyle(container, null).getPropertyValue(cssProp).split('px')[0],
         );
     } else {
         return parseFloat(
-            window.getComputedStyle(container, null).getPropertyValue(cssProp).split('px')[0]
+            window.getComputedStyle(container, null).getPropertyValue(cssProp).split('px')[0],
         );
     }
 }
@@ -36,7 +36,7 @@ export function isFlexRowWrapped(element: Element): boolean {
     /** The effective size of all children. */
     const childWidths = children.reduce(
         (accumulator, child) => accumulator + getOccupiedWidth(child),
-        0
+        0,
     );
 
     /** The content size of the flex box. */

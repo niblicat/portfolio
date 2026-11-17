@@ -22,7 +22,7 @@ export function relativeRedirect(
     url: URL,
     source: string,
     destination: string,
-    status: 300 | 301 | 302 | 303 | 304 | 305 | 306 | 307 | 308 | ({} & number) = 303
+    status: 300 | 301 | 302 | 303 | 304 | 305 | 306 | 307 | 308 | ({} & number) = 303,
 ): never {
     if (url) {
         // Will only replace first match
